@@ -279,7 +279,7 @@ class ShootoutEnv(gym.Env):
         [(1, self.screen_width_tiles, self.screen_width_tiles, 2*math.pi, 2*math.pi)[i%5] for i in range(self.max_ammo*5)] +
         [self.time_limit]
         )
-        #print(f"shape of lowarray {lowarray.shape}")
+        print(f"shape of lowarray {lowarray.shape}")
         self.observation_space = spaces.Box(
         low=lowarray,
         high=higharray,
@@ -581,8 +581,8 @@ def test_player_equivalency():
         #action, _states = policy.predict(obs)
         action = policy.predict(obs)
         obs, reward, done, _ = env.step(action)
-        #env.render()
-        #time.sleep(0.05)
+        env.render()
+        time.sleep(0.05)
 
         total_reward += reward
         round_reward += reward
@@ -632,6 +632,9 @@ def player_vs_best_model():
             print("loading model: ", filename)
             best_model_filename = filename
             policy = PPO1.load(filename, env=env)
+            #policy = BaselinePolicy()
+            #pixels_per_tile = int((400*0.375)/(5))
+            #policy = PlayerPolicy(pixels_per_tile)
 
     done = False
     total_reward = 0
@@ -663,8 +666,8 @@ def unused():
             obs = env.reset()
 
 if __name__ == "__main__":
-    player_vs_best_model()
-    #test_player_equivalency()
+    #player_vs_best_model()
+    test_player_equivalency()
 
 if __name__ == "__2main__":
     save_dir = "C:/Users/whmra/OneDrive/Documents/Python Projcs/STABLEBASELINES/1v1/models/"

@@ -1,4 +1,7 @@
 tools/cool moments/torender/*
+tools/cool moments/files/*
+tools/cool moments/files
+tools/cool moments/torender
 render/*
 models/*
 .vs
