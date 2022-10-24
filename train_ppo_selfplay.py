@@ -142,7 +142,7 @@ def train():
 			policy = PPO1.load(filename, env=env)
 			model = policy
 	else:
-
+		
 		# take mujoco hyperparams (but doubled timesteps_per_actorbatch to cover more steps.)
 		model = PPO1(MlpPolicy, env, timesteps_per_actorbatch=4096, clip_param=0.2, entcoeff=0.0, optim_epochs=10,
 					   optim_stepsize=3e-4, optim_batchsize=64, gamma=0.99, lam=0.95, schedule='linear', verbose=2)
@@ -154,6 +154,8 @@ def train():
 	eval_freq=EVAL_FREQ,
 	n_eval_episodes=EVAL_EPISODES,
 	deterministic=False)
+
+	
 
 	model.learn(total_timesteps=NUM_TIMESTEPS, callback=eval_callback)
 
